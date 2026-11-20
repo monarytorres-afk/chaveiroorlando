@@ -125,24 +125,39 @@ document.querySelector('#close').addEventListener('click', () => chat.close());
 
 const video = document.querySelector('#fundo');
 const motion = document.querySelector('#motion');
+const audio = document.querySelector('#audio');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-function startVideo() {
-  if (reducedMotion.matches || navigator.connection?.saveData) return;
-  video.src = 'chaveiro.mp4';
-  video.play().then(() => { motion.hidden = false; }).catch(() => {});
+
+function syncVideoControls() {
+  motion.textContent = video.paused ? 'Reproduzir vídeo' : 'Pausar vídeo';
+  audio.textContent = video.muted ? 'Ouvir áudio original' : 'Silenciar vídeo';
 }
-window.addEventListener('load', startVideo, { once: true });
-motion.addEventListener('click', () => {
-  if (video.paused) {
-    video.play().then(() => { motion.textContent = 'Pausar vídeo'; }).catch(() => {});
-  } else {
-    video.pause();
-    motion.textContent = 'Reproduzir vídeo';
+
+async function playVideo() {
+  if (!video.hasAttribute('src')) video.src = 'chaveiro.mp4';
+  try {
+    await video.play();
+  } catch {
+    syncVideoControls();
   }
+}
+
+window.addEventListener('load', () => {
+  motion.hidden = false;
+  audio.hidden = false;
+  if (!reducedMotion.matches && !navigator.connection?.saveData) playVideo();
+}, { once: true });
+motion.addEventListener('click', () => {
+  if (video.paused) playVideo();
+  else video.pause();
+});
+audio.addEventListener('click', () => {
+  video.muted = !video.muted;
+  if (!video.muted && video.paused) playVideo();
+});
+['play', 'pause', 'volumechange'].forEach(event => {
+  video.addEventListener(event, syncVideoControls);
 });
 reducedMotion.addEventListener('change', event => {
-  if (event.matches) {
-    video.pause();
-    motion.textContent = 'Reproduzir vídeo';
-  }
+  if (event.matches) video.pause();
 });

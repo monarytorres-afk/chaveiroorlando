@@ -8,7 +8,7 @@ button{cursor:pointer}
 a{color:inherit}
 :focus-visible{outline:3px solid #fff;outline-offset:4px}
 .wrap{width:min(1100px,calc(100% - 48px));margin-inline:auto}
-.hero{position:relative;isolation:isolate;background:#29211a url(capa.jpg) right 35%/auto 155% no-repeat;min-height:560px;overflow:hidden}
+.hero{position:relative;isolation:isolate;background:#29211a url(mascote-retrato.png) right 35%/auto 155% no-repeat;min-height:560px;overflow:hidden}
 .hero video,.hero::after{position:absolute;inset:0;width:100%;height:100%;z-index:-2;object-fit:cover;object-position:center 45%}
 .hero::after{content:"";z-index:-1;background:linear-gradient(0deg,#11110f 0%,transparent 40%),linear-gradient(90deg,#11110ff7 3%,#11110fcd 33%,#11110f45 72%,#11110f28),linear-gradient(#11110fa6,transparent 30%)}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:23px;border-bottom:1px solid var(--line)}
@@ -28,7 +28,8 @@ h1 span{color:var(--yellow)}
 .primary{background:var(--yellow);color:#17140a;padding:13px 18px;border:0;border-radius:11px;font-weight:800;display:inline-block;text-decoration:none}
 .primary:hover{background:#ffe17b}
 .call{display:inline-block;margin:12px 0 0 16px}
-.motion{position:absolute;bottom:24px;right:max(24px,calc((100% - 1100px)/2));border:1px solid var(--line);background:#11110fd9;color:var(--cream);border-radius:8px;padding:6px 10px;font-size:13px}
+.motion{position:absolute;bottom:24px;right:max(24px,calc((100% - 1100px)/2));display:flex;gap:6px}
+.motion button{border:1px solid var(--line);background:#11110fd9;color:var(--cream);border-radius:8px;padding:6px 10px;font-size:13px}
 .services{padding:17px 0 32px}
 .section-head h2{font-size:clamp(1.65rem,4vw,2.45rem);letter-spacing:-.055em;line-height:1.15}
 .section-head p,.location p{margin-top:6px;color:var(--muted)}
@@ -87,3 +88,20 @@ dialog::backdrop{background:#080704ce}
 @keyframes title-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes alert-pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 #ffcd2877}50%{opacity:.35;box-shadow:0 0 0 5px #ffcd2822}}
 @media(max-width:350px){.headline h1{font-size:2.75rem}.google-rating{padding-inline:8px}}
+
+.services{display:grid;grid-template-columns:minmax(0,1fr) minmax(145px,240px);column-gap:24px;align-items:start}
+.section-head{grid-column:1}
+.services .grid{grid-area:2 / 1}
+.services-mascot{grid-area:1 / 2 / span 2;justify-self:center;align-self:end;width:100%;height:auto;max-height:300px;object-fit:contain;filter:drop-shadow(0 6px 14px #0007)}
+.location img{object-fit:contain;background:#ffcd2818}
+.quick-contact{position:fixed;z-index:2;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));display:flex;gap:6px;padding:6px;background:#1c1b16f7;border:1px solid #5a4924;border-radius:15px;box-shadow:0 8px 22px #0008}
+.quick-contact a{display:grid;place-items:center;padding:10px 12px;font-size:.875rem;min-height:42px}
+.quick-whatsapp{color:var(--cream);border:1px solid #ffffff38;border-radius:10px;text-decoration:none;font-weight:700}
+.quick-whatsapp:hover{background:#ffffff14}
+footer{padding-bottom:calc(91px + env(safe-area-inset-bottom))}
+@media(max-width:650px){
+  .services{grid-template-columns:minmax(0,1fr) 80px;column-gap:8px;align-items:center}
+  .services .grid{grid-area:2 / 1 / 3 / -1}
+  .services-mascot{grid-area:1 / 2;max-height:105px}
+  .services noscript{grid-column:1 / -1}
+}

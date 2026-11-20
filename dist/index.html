@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="hero">
-  <video id="fundo" muted loop playsinline preload="none" poster="capa.jpg" aria-hidden="true"></video>
+  <video id="fundo" muted loop playsinline preload="none" aria-hidden="true"></video>
   <header class="wrap top">
     <a class="brand" href="./"><span class="logo" aria-hidden="true"></span><span>Chaveiro <strong>Próximo</strong><small>SÃO PAULO · SP</small></span></a>
     <a class="toplink" href="https://www.google.com/search?q=Chaveiro+Pr%C3%B3ximo+-+24h&stick=H4sIAAAAAAAA_-NgU1I1qLA0SU41NTcwM7AwSE1OM0iyMqhItbBMNrS0TE1OMrGwtDAxW8Qq7pyRWJaaWZSvEFB0eHNFZm6-gq6CkUkGAGsmzLlDAAAA&hl=pt-BR">Perfil no Google</a>
@@ -29,11 +29,15 @@
     <a class="primary" href="#servicos">Preciso de atendimento agora</a>
     <a class="call" href="tel:+5511980124892">Ligar (11) 98012-4892</a>
   </div>
-  <button class="motion" id="motion" type="button" hidden>Pausar vídeo</button>
+  <div class="motion">
+    <button id="audio" type="button" hidden>Ouvir áudio original</button>
+    <button id="motion" type="button" hidden>Reproduzir vídeo</button>
+  </div>
 </div>
 <main class="wrap" id="servicos">
   <section class="services" aria-labelledby="services-title">
-    <div class="section-head"><h2 id="services-title">Como podemos ajudar?</h2><p>Escolha o serviço e conte o que aconteceu.</p></div>
+    <div class="section-head"><h2 id="services-title">Como podemos ajudar?</h2><p>Escolha um serviço para iniciar o chat guiado.</p></div>
+    <img class="services-mascot" src="mascote-corpo.png" alt="" width="560" height="703" decoding="async">
     <div class="grid">
       <button class="card" data-service="porta"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V3h12v18M14 12h.01"/></svg></span><span><strong>Abertura de portas</strong><small>Porta travada, chave perdida ou quebrada.</small></span><span class="next" aria-hidden="true"></span></button>
       <button class="card" data-service="carro"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 11 2-5h10l2 5M4 17v2m16-2v2M3 15v-2l2-2h14l2 2v4H3zM7 14h.01m10 0h.01"/></svg></span><span><strong>Chaveiro automotivo</strong><small>Carro trancado ou problema com a chave.</small></span><span class="next" aria-hidden="true"></span></button>
@@ -43,12 +47,16 @@
     <noscript><p>Para pedir atendimento, ligue para <a href="tel:+5511980124892">(11) 98012-4892</a>.</p></noscript>
   </section>
   <section class="location" aria-labelledby="location-title">
-    <img src="retrato.jpg" alt="" width="72" height="72" loading="lazy">
+    <img src="mascote-retrato.png" alt="" width="72" height="72" loading="lazy">
     <div><h2 id="location-title">Chaveiro no Jardim Europa</h2><p>Av. Brig. Faria Lima, 2369, loja 13 · São Paulo, SP</p></div>
     <a href="https://www.google.com/maps/search/?api=1&query=Chaveiro+Pr%C3%B3ximo+24h+Faria+Lima+2369+S%C3%A3o+Paulo">Ver no mapa</a>
   </section>
 </main>
 <footer class="wrap">Chaveiro Próximo 24h <span>·</span> <a href="tel:+5511980124892">(11) 98012-4892</a></footer>
+<nav class="quick-contact" aria-label="Contato direto">
+  <a class="primary" href="tel:+5511980124892">Ligar agora</a>
+  <a class="quick-whatsapp" href="https://wa.me/5511980124892">WhatsApp direto</a>
+</nav>
 <dialog id="chat" aria-labelledby="chat-title">
   <header class="chat-head"><div><h2 id="chat-title">Atendimento online</h2><p id="chat-service"></p></div><button id="close" aria-label="Fechar atendimento">×</button></header>
   <div class="chat-body">
