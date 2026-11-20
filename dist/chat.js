@@ -18,8 +18,8 @@ const services = {
 };
 const common = [
   ['Em qual bairro e cidade você precisa de atendimento?'],
-  ['Quando você precisa do serviço?', ['Agora', 'Ainda hoje', 'Quero agendar']],
-  ['Quer acrescentar algum detalhe?']
+  ['Quer acrescentar algum detalhe?'],
+  ['Quando você precisa do serviço?', ['Agora', 'Ainda hoje', 'Quero agendar']]
 ];
 const chat = document.querySelector('#chat');
 const history = document.querySelector('#history');
@@ -61,7 +61,7 @@ function draw(moveFocus = true) {
     const transcript = replies.map((reply, i) => questions[i][0] + '\n' + reply);
     const message = ['Olá! Gostaria de atendimento.', 'Serviço: ' + serviceName, ...transcript].join('\n\n');
     whatsapp.href = 'https://wa.me/5511980124892?text=' + encodeURIComponent(message);
-    whatsapp.focus();
+    window.location.assign(whatsapp.href);
     return;
   }
 
@@ -72,8 +72,10 @@ function draw(moveFocus = true) {
   choices.replaceChildren();
   entry.hidden = Boolean(options);
   input.value = '';
-  input.placeholder = step === questions.length - 1 ? 'Detalhes adicionais' : 'Digite sua resposta';
-  input.required = step !== questions.length - 1;
+  const optionalDetails = step === questions.length - 2;
+  input.placeholder = optionalDetails ? 'Detalhes adicionais' : 'Digite sua resposta';
+  input.required = !optionalDetails;
+  form.querySelector('[type=submit]').textContent = optionalDetails ? 'Continuar' : 'OK';
   if (options) {
     choices.setAttribute('role', 'group');
     choices.setAttribute('aria-label', prompt);
@@ -105,6 +107,7 @@ document.querySelectorAll('[data-service]').forEach(card => {
 
 form.addEventListener('submit', event => {
   event.preventDefault();
+  if (entry.hidden) return;
   const reply = input.value.trim();
   if (!reply && input.required) {
     input.focus();
