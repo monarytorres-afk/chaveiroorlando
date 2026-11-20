@@ -106,18 +106,17 @@ footer{padding-bottom:calc(91px + env(safe-area-inset-bottom))}
   .services noscript{grid-column:1 / -1}
 }
 
-.headline{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,.56fr);align-items:center;column-gap:22px;padding-block:49px 78px}
+.headline{padding-block:24px 78px}
 .hero-copy{min-width:0}
 .hero-copy h1{font-size:clamp(2.2rem,7.8vw,6.5rem)}
-.hero-mascot{justify-self:center;width:min(100%,340px);height:auto;max-height:380px;object-fit:contain;filter:drop-shadow(0 12px 26px #030302b3);pointer-events:none}
+.hero-mascot{display:block;width:clamp(94px,14vw,148px);height:auto;margin-bottom:9px;filter:drop-shadow(0 12px 26px #030302b3);pointer-events:none}
 .walk-sprite{height:min(300px,31vw);margin:auto;aspect-ratio:260/480;background:url(mascote-caminhada.png) left center/200% 100% no-repeat}
 .door-intro{display:none}
 @media(max-width:650px){
-  .headline{grid-template-columns:minmax(0,1fr) minmax(95px,.5fr);gap:8px;padding-block:34px 67px}
+  .headline{padding-block:19px 67px}
   .hero-copy .lead br{display:none}
   .hero-copy .primary{font-size:.86rem;padding:10px}
   .hero-copy .call{display:table;margin:10px 0 0}
-  .hero-mascot{max-height:230px}
   .walk-sprite{height:min(105px,24vw)}
 }
 @media(max-width:380px){
