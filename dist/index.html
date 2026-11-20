@@ -52,7 +52,6 @@
 <dialog id="chat" aria-labelledby="chat-title">
   <header class="chat-head"><div><h2 id="chat-title">Atendimento online</h2><p id="chat-service"></p></div><button id="close" aria-label="Fechar atendimento">×</button></header>
   <div class="chat-body">
-    <a class="chat-call" href="tel:+5511980124892">Ligar agora mesmo</a>
     <ol id="history" aria-label="Histórico da conversa"></ol>
     <p id="progress"></p>
     <form id="answer-form">
@@ -60,6 +59,7 @@
       <div id="choices"></div>
       <div id="text-entry"><input id="answer" maxlength="240" required autocomplete="off"><button type="submit" class="primary">OK</button></div>
     </form>
+    <a class="chat-call" href="tel:+5511980124892">Se preferir, ligue agora mesmo</a>
     <div id="finish" hidden><p>Abrindo o WhatsApp com seu pedido…</p><a class="primary" id="whatsapp">Abrir WhatsApp</a></div>
     <button id="back" hidden type="button">Voltar uma pergunta</button>
   </div>
