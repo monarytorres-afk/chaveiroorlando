@@ -161,3 +161,19 @@ audio.addEventListener('click', () => {
 reducedMotion.addEventListener('change', event => {
   if (event.matches) video.pause();
 });
+
+const demo = document.querySelector('#services-demo');
+if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+  const demoObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    demo.classList.add('services-demo');
+    demoObserver.disconnect();
+  }, { threshold: 0.25 });
+  demoObserver.observe(demo);
+  document.querySelectorAll('[data-service]').forEach(card => {
+    card.addEventListener('click', () => {
+      demoObserver.disconnect();
+      demo.classList.remove('services-demo');
+    }, { once: true });
+  });
+}
