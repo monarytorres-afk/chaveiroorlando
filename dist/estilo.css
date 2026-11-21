@@ -164,20 +164,20 @@ footer{padding-bottom:calc(91px + env(safe-area-inset-bottom))}
 
 .quick-contact .quick-whatsapp{color:#75e6a5;gap:2px;padding:4px 9px}
 .quick-whatsapp small{font-size:.75rem;line-height:1.25;color:var(--cream);white-space:nowrap}
-#chat{width:min(410px,calc(100% - 18px));max-height:calc(100dvh - 18px);border:5px solid #202623;border-radius:29px;background:#10231e;box-shadow:0 18px 70px #000b}
-.chat-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px;background:#174536}
-.chat-head img{border-radius:50%;object-fit:contain;background:#284f41}
+#chat{width:min(410px,calc(100% - 18px));max-height:calc(100dvh - 18px);border:5px solid #3a3325;border-radius:29px;background:#171510;box-shadow:0 18px 70px #000b}
+.chat-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px;background:#2b2416}
+.chat-head img{border-radius:50%;object-fit:contain;background:#47381a}
 .chat-head h2{font-size:1.05rem}
-.chat-head p{color:#d0ebdc}
-.chat-body{padding:12px;background:radial-gradient(circle,#ddf8e511 1px,transparent 1px) 0 0/19px 19px,#10231e}
+.chat-head p{color:#ffda64}
+.chat-body{padding:12px;background:radial-gradient(circle,#ffcd2812 1px,transparent 1px) 0 0/19px 19px,#171510}
 #history{max-height:min(25dvh,205px);scrollbar-width:thin}
-#history li,#question{width:fit-content;max-width:92%;background:#233c34;border-radius:4px 13px 13px 13px;padding:8px 12px}
-#history li.user{margin-left:auto;background:#265a42;border-radius:13px 4px 13px 13px}
+#history li,#question{width:fit-content;max-width:92%;background:#2c2820;border-radius:4px 13px 13px 13px;padding:8px 12px}
+#history li.user{margin-left:auto;background:#513d14;border-radius:13px 4px 13px 13px}
 #question{font-weight:650}
-#progress{color:#c4dcd1;font-size:.75rem}
-#choices button,#answer{background:#142e24;border-color:#507c64}
-#choices button:hover{border-color:#a1eac2}
+#progress{color:#d5c7a7;font-size:.75rem}
+#choices button,#answer{background:#221d14;border-color:#6d5528}
+#choices button:hover{border-color:var(--yellow)}
 #choices button{border-radius:16px}
 #answer{border-radius:16px}
-.chat-call{border-color:#5b8d73;color:#c6f8d8}
+.chat-call{border-color:#755d2c;color:var(--yellow)}
 @media(max-width:380px){.quick-contact .quick-whatsapp{padding-inline:6px}}

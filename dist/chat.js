@@ -99,7 +99,6 @@ document.querySelectorAll('[data-service]').forEach(card => {
     serviceName = card.querySelector('strong').textContent;
     questions = [...services[card.dataset.service], ...common];
     replies = [];
-    document.querySelector('#chat-service').textContent = serviceName;
     draw(false);
     chat.showModal();
     question.focus();
