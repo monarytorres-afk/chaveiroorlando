@@ -171,19 +171,25 @@ function syncVideoControls() {
   audio.textContent = video.muted ? 'Ouvir áudio original' : 'Silenciar vídeo';
 }
 
-async function playVideo() {
+async function playVideo(allowMutedFallback = false) {
   if (!video.hasAttribute('src')) video.src = 'chaveiro.mp4';
   try {
     await video.play();
-  } catch {
-    syncVideoControls();
+  } catch (error) {
+    if (allowMutedFallback && error.name === 'NotAllowedError' && !video.muted && video.paused) {
+      video.muted = true;
+      await playVideo();
+    } else {
+      syncVideoControls();
+    }
   }
 }
 
 window.addEventListener('load', () => {
   motion.hidden = false;
   audio.hidden = false;
-  if (!reducedMotion.matches && !navigator.connection?.saveData) playVideo();
+  syncVideoControls();
+  if (!reducedMotion.matches && !navigator.connection?.saveData) playVideo(true);
 }, { once: true });
 motion.addEventListener('click', () => {
   if (video.paused) playVideo();

@@ -29,7 +29,10 @@ h1 span{color:var(--yellow)}
 .primary:hover{background:#ffe17b}
 .call{display:inline-block;margin:12px 0 0 16px}
 .motion{position:absolute;bottom:24px;right:max(24px,calc((100% - 1100px)/2));display:flex;gap:6px}
-.motion button{border:1px solid var(--line);background:#11110fd9;color:var(--cream);border-radius:8px;padding:6px 10px;font-size:13px}
+.motion button{border:1px solid var(--line);background:#11110fb3;color:var(--muted);border-radius:7px;padding:4px 8px;min-height:28px;font-size:.75rem}
+.motion button:hover,.motion button:focus-visible{color:var(--cream)}
+.section-break{width:min(1100px,calc(100% - 30px));height:1px;margin:2px auto 12px;background:linear-gradient(90deg,transparent,#ffcd2855 32%,#ffcd2855 68%,transparent);position:relative}
+.section-break::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;background:var(--yellow);transform:translate(-50%,-50%) rotate(45deg)}
 .services{padding:17px 0 32px}
 .section-head h2{font-size:clamp(1.65rem,4vw,2.45rem);letter-spacing:-.055em;line-height:1.15}
 .section-head p,.location p{margin-top:6px;color:var(--muted)}
