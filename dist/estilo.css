@@ -109,9 +109,8 @@ footer{padding-bottom:calc(91px + env(safe-area-inset-bottom))}
 .headline{padding-block:24px 78px}
 .hero-copy{min-width:0}
 .hero-copy h1{font-size:clamp(2.2rem,7.8vw,6.5rem)}
-.hero-status{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.hero-status .tag{margin:0}
-.hero-mascot{display:block;flex:none;width:clamp(76px,13vw,116px);height:auto;filter:drop-shadow(0 12px 26px #030302b3);pointer-events:none}
+.brand-mascot{display:block;flex:none;width:45px;height:auto}
+@media(max-width:650px){.brand{gap:8px}.brand-mascot{width:36px}}
 .walk-sprite{height:min(300px,31vw);margin:auto;aspect-ratio:260/480;background:url(mascote-caminhada.png) left center/200% 100% no-repeat}
 .door-intro{display:none}
 @media(max-width:650px){
