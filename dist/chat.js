@@ -177,7 +177,7 @@ async function playVideo(allowMutedFallback = false) {
   try {
     await video.play();
   } catch (error) {
-    if (allowMutedFallback && error.name === 'NotAllowedError' && !video.muted && video.paused) {
+    if (allowMutedFallback && error.name === 'NotAllowedError' && !video.muted) {
       soundNeedsInteraction = true;
       video.muted = true;
       await playVideo();
@@ -203,11 +203,23 @@ audio.addEventListener('click', () => {
   video.muted = !video.muted;
   if (!video.muted && video.paused) playVideo();
 });
-document.addEventListener('click', event => {
-  if (!soundNeedsInteraction || !event.isTrusted || event.target.closest('.motion')) return;
+function trySoundAfterInteraction() {
+  if (!soundNeedsInteraction) return;
   soundNeedsInteraction = false;
   video.muted = false;
-  playVideo();
+  playVideo(true);
+}
+
+let pageScrolled = false;
+window.addEventListener('scroll', () => {
+  pageScrolled = true;
+  trySoundAfterInteraction();
+}, { once: true, passive: true });
+document.addEventListener('touchend', event => {
+  if (pageScrolled && event.isTrusted && !event.target.closest('.motion')) trySoundAfterInteraction();
+}, { passive: true });
+document.addEventListener('click', event => {
+  if (event.isTrusted && !event.target.closest('.motion')) trySoundAfterInteraction();
 });
 ['play', 'pause', 'volumechange'].forEach(event => {
   video.addEventListener(event, syncVideoControls);
