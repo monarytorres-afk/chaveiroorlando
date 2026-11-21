@@ -231,3 +231,39 @@ quickContact.addEventListener('keydown', event => {
   quickContact.open = false;
   quickContact.querySelector('summary').focus();
 });
+
+const scrollHighlight = matchMedia('(max-width: 650px), (hover: none) and (pointer: coarse)');
+const serviceCards = [...document.querySelectorAll('[data-service]')];
+let highlightedCard = null;
+let highlightFrame = null;
+
+function updateServiceHighlight() {
+  highlightFrame = null;
+  let nextCard = null;
+  if (scrollHighlight.matches) {
+    const midpoint = window.innerHeight / 2;
+    let closestDistance = midpoint * 0.55;
+    for (const card of serviceCards) {
+      const box = card.getBoundingClientRect();
+      if (box.bottom <= 0 || box.top >= window.innerHeight) continue;
+      const distance = Math.abs((box.top + box.bottom) / 2 - midpoint);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        nextCard = card;
+      }
+    }
+  }
+  if (nextCard === highlightedCard) return;
+  highlightedCard?.classList.remove('is-scroll-highlighted');
+  nextCard?.classList.add('is-scroll-highlighted');
+  highlightedCard = nextCard;
+}
+
+function scheduleServiceHighlight() {
+  if (highlightFrame === null) highlightFrame = window.requestAnimationFrame(updateServiceHighlight);
+}
+
+window.addEventListener('scroll', scheduleServiceHighlight, { passive: true });
+window.addEventListener('resize', scheduleServiceHighlight);
+window.addEventListener('load', scheduleServiceHighlight, { once: true });
+scrollHighlight.addEventListener('change', scheduleServiceHighlight);

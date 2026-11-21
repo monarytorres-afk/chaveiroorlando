@@ -38,7 +38,9 @@ h1 span{color:var(--yellow)}
 .section-head p,.location p{margin-top:6px;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
 .card{color:inherit;text-align:left;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--panel);border:1px solid #3c3727;border-radius:15px;padding:14px;min-height:92px}
-.card:hover{border-color:var(--yellow);background:#292314}
+.card.is-scroll-highlighted{border-color:var(--yellow);background:#292314}
+@media(hover:hover){.card:hover{border-color:var(--yellow);background:#292314}}
+@media(prefers-reduced-motion:no-preference){.card{transition:background-color .2s,border-color .2s}}
 .card strong,.card small{display:block}
 .card strong{font-size:1.06rem;line-height:1.2}
 .card small{font-size:.875rem;color:var(--muted);margin-top:5px}
