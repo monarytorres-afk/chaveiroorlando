@@ -46,6 +46,7 @@ function bubble(message, className) {
 function draw(moveFocus = true) {
   const step = replies.length;
   history.replaceChildren();
+  bubble('Olá! Vou fazer algumas perguntas para agilizar seu atendimento.', 'bot');
   replies.forEach((reply, i) => {
     bubble(questions[i][0], 'bot');
     bubble(reply, 'user');

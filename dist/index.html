@@ -65,10 +65,20 @@
 <footer class="wrap">Chaveiro Próximo 24h <span>·</span> <a href="tel:+5511980124892">(11) 98012-4892</a></footer>
 <nav class="quick-contact" aria-label="Contato direto">
   <a class="primary" href="tel:+5511980124892">Ligar agora</a>
-  <a class="quick-whatsapp" href="https://wa.me/5511980124892">WhatsApp direto</a>
+  <a class="quick-whatsapp" href="https://wa.me/5511980124892" aria-label="WhatsApp · Estamos online agora">
+    <svg viewBox="0 0 24 24" width="25" height="25" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+      <path d="M20.3 12a8.3 8.3 0 0 1-12.4 7.2l-4.2 1.1 1.1-4.1A8.3 8.3 0 1 1 20.3 12Z"/>
+      <path fill="currentColor" stroke="none" d="M9.3 7.6c-.3-.6-.7-.5-1-.5-.5 0-1.2.7-1.2 1.7 0 1.4 1 3 2.6 4.5 1.5 1.4 3.5 2.6 4.8 2.2.9-.2 1.5-1 1.5-1.7 0-.3-.4-.5-1.8-1.1-.4-.2-.6-.2-.8.1l-.6.7c-.2.2-.4.1-.7 0a7.2 7.2 0 0 1-2.4-2.1c-.2-.3-.2-.5 0-.7.4-.4.7-.7.5-1.2Z"/>
+    </svg>
+    <small>Estamos online agora</small>
+  </a>
 </nav>
 <dialog id="chat" aria-labelledby="chat-title">
-  <header class="chat-head"><div><h2 id="chat-title">Atendimento online</h2><p id="chat-service"></p></div><button id="close" aria-label="Fechar atendimento">×</button></header>
+  <header class="chat-head">
+    <img src="mascote-hero.png" width="42" height="42" alt="">
+    <div><h2 id="chat-title">Chaveiro Próximo</h2><p id="chat-service"></p></div>
+    <button id="close" aria-label="Fechar atendimento">×</button>
+  </header>
   <div class="chat-body">
     <ol id="history" aria-label="Histórico da conversa"></ol>
     <p id="progress"></p>
