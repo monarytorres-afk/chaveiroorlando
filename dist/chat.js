@@ -165,6 +165,7 @@ const video = document.querySelector('#fundo');
 const motion = document.querySelector('#motion');
 const audio = document.querySelector('#audio');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let soundNeedsInteraction = false;
 
 function syncVideoControls() {
   motion.textContent = video.paused ? 'Reproduzir vídeo' : 'Pausar vídeo';
@@ -177,6 +178,7 @@ async function playVideo(allowMutedFallback = false) {
     await video.play();
   } catch (error) {
     if (allowMutedFallback && error.name === 'NotAllowedError' && !video.muted && video.paused) {
+      soundNeedsInteraction = true;
       video.muted = true;
       await playVideo();
     } else {
@@ -192,12 +194,20 @@ window.addEventListener('load', () => {
   if (!reducedMotion.matches && !navigator.connection?.saveData) playVideo(true);
 }, { once: true });
 motion.addEventListener('click', () => {
+  soundNeedsInteraction = false;
   if (video.paused) playVideo();
   else video.pause();
 });
 audio.addEventListener('click', () => {
+  soundNeedsInteraction = false;
   video.muted = !video.muted;
   if (!video.muted && video.paused) playVideo();
+});
+document.addEventListener('click', event => {
+  if (!soundNeedsInteraction || !event.isTrusted || event.target.closest('.motion')) return;
+  soundNeedsInteraction = false;
+  video.muted = false;
+  playVideo();
 });
 ['play', 'pause', 'volumechange'].forEach(event => {
   video.addEventListener(event, syncVideoControls);
