@@ -215,3 +215,13 @@ if (!reducedMotion.matches && 'IntersectionObserver' in window) {
     }, { once: true });
   });
 }
+
+const quickContact = document.querySelector('.quick-contact');
+document.addEventListener('click', event => {
+  if (quickContact.open && !quickContact.contains(event.target)) quickContact.open = false;
+});
+quickContact.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !quickContact.open) return;
+  quickContact.open = false;
+  quickContact.querySelector('summary').focus();
+});
