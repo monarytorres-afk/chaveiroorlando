@@ -32,9 +32,27 @@ const progress = document.querySelector('#progress');
 const finish = document.querySelector('#finish');
 const whatsapp = document.querySelector('#whatsapp');
 const back = document.querySelector('#back');
+const reminder = document.querySelector('#chat-reminder');
+const remindersShown = new Set();
+let inactivityTimer;
 let serviceName;
 let questions;
 let replies = [];
+
+function showReminder(reason) {
+  if (!questions || replies.length === questions.length || remindersShown.has(reason)) return;
+  remindersShown.add(reason);
+  (chat.open ? chat : document.body).append(reminder);
+  reminder.hidden = false;
+  if (chat.open) reminder.scrollIntoView({ block: 'nearest' });
+}
+
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  if (chat.open && replies.length < questions.length && !remindersShown.has('idle')) {
+    inactivityTimer = setTimeout(() => showReminder('idle'), 30000);
+  }
+}
 
 function bubble(message, className) {
   const item = document.createElement('li');
@@ -44,6 +62,8 @@ function bubble(message, className) {
 }
 
 function draw(moveFocus = true) {
+  reminder.hidden = true;
+  resetInactivityTimer();
   const step = replies.length;
   history.replaceChildren();
   bubble('Olá! Vou fazer algumas perguntas para agilizar seu atendimento.', 'bot');
@@ -99,8 +119,10 @@ document.querySelectorAll('[data-service]').forEach(card => {
     serviceName = card.querySelector('strong').textContent;
     questions = [...services[card.dataset.service], ...common];
     replies = [];
+    remindersShown.clear();
     draw(false);
     chat.showModal();
+    resetInactivityTimer();
     question.focus();
   });
 });
@@ -122,6 +144,22 @@ back.addEventListener('click', () => {
   if (!entry.hidden && previous !== 'Sem detalhes adicionais.') input.value = previous;
 });
 document.querySelector('#close').addEventListener('click', () => chat.close());
+input.addEventListener('input', resetInactivityTimer);
+chat.addEventListener('close', () => {
+  clearTimeout(inactivityTimer);
+  reminder.hidden = true;
+  showReminder('close');
+});
+document.querySelector('#dismiss-reminder').addEventListener('click', () => {
+  reminder.hidden = true;
+  if (chat.open) question.focus();
+});
+document.querySelector('#resume-chat').addEventListener('click', () => {
+  reminder.hidden = true;
+  if (!chat.open) chat.showModal();
+  resetInactivityTimer();
+  question.focus();
+});
 
 const video = document.querySelector('#fundo');
 const motion = document.querySelector('#motion');

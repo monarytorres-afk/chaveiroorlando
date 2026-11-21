@@ -181,3 +181,12 @@ footer{padding-bottom:calc(91px + env(safe-area-inset-bottom))}
 #answer{border-radius:16px}
 .chat-call{border-color:#755d2c;color:var(--yellow)}
 @media(max-width:380px){.quick-contact .quick-whatsapp{padding-inline:6px}}
+
+.chat-reminder{position:fixed;z-index:5;bottom:calc(83px + env(safe-area-inset-bottom));right:14px;width:min(365px,calc(100% - 28px));padding:15px 38px 15px 15px;border:1px solid #755d2c;border-radius:13px;background:#241d11;color:var(--cream);box-shadow:0 10px 32px #0009}
+#chat .chat-reminder{position:relative;inset:auto;width:auto;margin:0 12px 12px;box-shadow:none}
+.chat-reminder h2{font-size:1.05rem;margin:0 0 4px}
+.chat-reminder p{font-size:.9rem}
+.reminder-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.reminder-actions .primary,.reminder-actions button{font-size:.875rem;padding:8px 10px}
+.reminder-actions button,#dismiss-reminder{color:var(--cream);background:transparent;border:1px solid #755d2c;border-radius:9px}
+#dismiss-reminder{position:absolute;right:8px;top:8px;width:29px;height:29px;line-height:1;font-size:20px}
